@@ -1,7 +1,7 @@
 //Game Values
 let min = 1,
 		max = 10,
-		winningNum = 2,
+		winningNum = getWinningNum(min, max),
 		guessesLeft = 3
 		
 //UI Elements
@@ -20,12 +20,19 @@ guessInput.value = ''
 minNum.textContent = min;
 maxNum.textContent = max;
 
+//Play agian event listener
+game.addEventListener('mousedown', function(e) {
+	if(e.target.className === 'play-again'){
+		window.location.reload()
+	}
+})
+
 // Listen for button click
 guessBtn.addEventListener('click', () => {
 	let guess = parseInt(guessInput.value)
 
 	if(isNaN(guess) || guess < min || guess > max){
-		setMessage(`Please enter a number between ${min} and ${max}`, 'red')
+		return setMessage(`Please enter a number between ${min} and ${max}`, 'red')
 	}
 	if(guess === winningNum){
 	
@@ -72,5 +79,11 @@ function gameOver(won, msg, btnMsg){
 	setMessage(msg, color)
 	guessBtn.setAttribute('value', btnMsg)
 	guessInput.value = ''
+	guessBtn.className += 'play-again'
+}
+
+//Get Winning Number
+function getWinningNum(){
+	return Math.floor(Math.random() * (max-min + 1))
 }
 
