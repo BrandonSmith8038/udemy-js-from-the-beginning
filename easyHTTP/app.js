@@ -11,16 +11,16 @@ const http = new easyHTTP;
   
 // })
 
-// Get Single Post
-// http.get('https://jsonplaceholder.typicode.com/posts/1', function(err, response){
+//Get Single Post
+/*http.get('https://jsonplaceholder.typicode.com/posts/1', function(err, response){
   
-//   if(err){
-//       console.log(err)
-//   } else {
-//     console.log(response)  
-//   }
+  if(err){
+      console.log(err)
+  } else {
+    console.log(response)  
+  }
   
-// })
+})*/
 
 //Create Data
 const data = {
@@ -28,8 +28,26 @@ const data = {
     "body": "This is a custom post"
 }
 
-//Create Post
-http.post('https://jsonplaceholder.typicode.com/posts', data, function(err, response) {
+// //Create Post
+// http.post('https://jsonplaceholder.typicode.com/posts', data, function(err, response) {
+//     if(err){
+//         console.log(err)
+//     } else {
+//         console.log(response)
+//     }
+// })
+
+// //Update Post
+// http.put('https://jsonplaceholder.typicode.com/posts/1', data, function(err, response){
+//     if(err){
+//         console.log(err)
+//     } else {
+//         console.log(response)
+//     }
+// })
+
+//Delete Post
+http.delete('https://jsonplaceholder.typicode.com/posts/1', function(err, response){
     if(err){
         console.log(err)
     } else {
