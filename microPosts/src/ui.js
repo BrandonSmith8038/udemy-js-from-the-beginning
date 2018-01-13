@@ -29,6 +29,7 @@ class UI {
     });
     this.post.innerHTML = output;
   }
+  //Show Alert Message
   showAlert(msg, className) {
     this.clearAlert();
 
@@ -50,15 +51,57 @@ class UI {
       this.clearAlert();
     }, 3000);
   }
+  //Clear Alert Message
   clearAlert() {
     const currentAlert = document.querySelector('.alert');
     if (currentAlert) {
       currentAlert.remove();
     }
   }
+  //Fill Form To Edit
   clearFields() {
     this.titleInput.value = '';
     this.bodyInput.value = '';
+  }
+  fillForm(data) {
+    this.titleInput.value = data.title;
+    this.bodyInput.value = data.body;
+    this.idInput.value = data.id;
+
+    this.changeFormState('edit');
+  }
+  clearIdInput() {
+    this.idInput.value = '';
+  }
+  //Change the form state
+  changeFormState(type) {
+    if (type === 'edit') {
+      this.postSubmit.textContent = 'Update Post';
+      this.postSubmit.className = 'post-submit btn btn-warning btn-block';
+
+      //Create Cancel Button
+      const button = document.createElement('button');
+      button.className = 'post-cancel btn btn-dark btn-block';
+      button.appendChild(document.createTextNode('Cancel Edit'));
+
+      //Get Parent
+      const cardForm = document.querySelector('.card-form');
+      //Get element to insert before
+      const formEnd = document.querySelector('form-end');
+      //Insert Cancel Button
+      cardForm.insertBefore(button, formEnd);
+    } else {
+      this.postSubmit.textContent = 'Post It!!!';
+      this.postSubmit.className = 'post-submit btn btn-primary btn-block';
+
+      if (document.querySelector('.post-cancel')) {
+        document.querySelector('.post-cancel').remove();
+      }
+      //Clear ID From hidden field
+      this.clearIdInput();
+      //Clear text
+      this.clearFields();
+    }
   }
 }
 
